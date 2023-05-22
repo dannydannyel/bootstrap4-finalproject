@@ -1,0 +1,40 @@
+{
+  "name": "cheatsheet4u",
+  "version": "1.0.0",
+  "description": "The ultimate experience to get the best programming cheatsheets",
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run watch:all",
+    "serve": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:scss": "node-sass --watch css/styles.scss css/styles.css",
+    "watch:all": "parallelshell \"npm run watch:scss\" \"npm run serve\"",
+    "scss": "node-sass css -o css",
+    "clean": "rimraf dist",
+    "copydata": "copyfiles -f storage\\cheatsheets\\* dist\\files\\cheatsheets",
+    "imagemin": "imagemin img/* --out-dir=\"dist\\img\"",
+    "uglifyjs": "uglifyjs js/*.js -c --mangle-props -o dist/js",
+    "usemin": "usemin index.html -d dist --htmlmin -o dist\\index.html && usemin toprated.html -d dist -o dist\\toprated.html",
+    "build-old": "npm run clean && npm run copydata && npm run imagemin && npm run usemin",
+    "build": "webpack --config webpack.config.js"
+  },
+  "author": "Daniel Requena Cervantes",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap": "^4.6.0",
+    "browser-sync": "^2.29.3",
+    "cssmin": "^0.4.3",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "htmlmin": "^0.0.7",
+    "imagemin": "^8.0.1",
+    "lite-server": "^2.6.1",
+    "node-sass": "^8.0.0",
+    "parallelshell": "^3.0.2",
+    "rimraf": "^5.0.1",
+    "uglifyjs": "^2.4.11",
+    "usemin-cli": "^0.6.0",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
+  }
+}

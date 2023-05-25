@@ -24,7 +24,38 @@ The main purpose of the web is to offer a very useful library for store pogrammi
 	- Added `scss` (standalon scss compiler), `watch:scss` (scss compiler with `watch` flag), `watch:all` (`parallelshell` for watch:scss and lite-server) and finally `start` (to call directly `npm run watch:all`)
 	- The package `parallelshell` has an issue that must be solved by editing the `index.js` original in `node_modules/parallelshell` folder due to my recent node and npm versions, due is incompatible, see references to more information. This is solved by replacing the original `index.js` and then it worked
 * After several tests I've realized that current usemin-cli version for use htmlmin, uglify-js and cssmin didn't work due uglify-js has an icompatibility with my current nodejs version. So I investigated and I discovered webpack npm package. But it didn't work too.
-* Finally I've used with **gult**, but I had to investigate on internet due the current gult version has several incompatibilites, like using the `series` method for task.
+* Finally I've used with **gult**, but I had to investigate on internet due the current gult version has several incompatibilites, like using the `series` method for task. But the problem has that several packages as `rev` or `sass` required to use a new gulp feature to use as module, and this is incompatible with `require` functions
+* The last attempt worked it was by using Grunt client with version 1.2.0, but usign the configuration as mainly same of the course but with several differences to adapt to my code. My code is originaly structured in the next way:
+```
+/
+|--->node_modules/
+|	|--->.....
+|--->dist/
+|	|--->css/
+|	|--->files/
+|	|--->img/
+|	|--->js/
+|	|->index.html
+|	|->toprated.html
+|--->src/
+|	|--->css/
+|	|--->files/
+|	|--->img/
+|	|->index.html
+|	|->toprated.html
+|->.gitignore
+|->Gruntfile.js
+|->gulpfile.js
+|->package-lock.json
+|->package.json
+|->README.md
+```
+	- `node_modules` contains the installed npm packages, including gulp, grunt, npm for webpacking utilities and bootstrap library
+	- `dist` is the packed, minified, and standalone for public site depoloyment
+	- `src` is the working site, as the best practices explains nowadays how to do this in this specific folder. Notice that in this case, the css and js files for bootstrap, popper and jquery are linked to `node_modules` site, but when using the webpacking tasks, this is locally copied to use in a single `js` and `css` files that are minified too. The reason for this package doesn't contains `js` folder but `dist` yes is because the `Grunt` tasks that makes this magic by copying the js files from `node_modules` and then uglify, minified and package them
+	- Local files are the main npm configuration packages and the configuration tasks, mainly repeated tasks, but for differente applications: npm, gulp and Grunt, but the only that works 100% is Grunt after a lot of effort due version incompatibilities with installed packages
+
+
 
 ## 3. Conclusions
 

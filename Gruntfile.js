@@ -107,8 +107,10 @@ module.exports = function(grunt) {
         clean: {
             build: {
                 src: ['dist/']
-            }
+            },
+            rootFiles: ['bootstrap.*.*', 'jquery.*', 'popper.*']
         },
+        
         imagemin: {
             dynamic: {
                 files: [{
@@ -206,7 +208,7 @@ module.exports = function(grunt) {
     grunt.registerTask('css', ['sass']);
     grunt.registerTask('default', ['browserSync', 'watch']);
     grunt.registerTask('build', [
-       'clean',
+       'clean:build',
        'copy',
        'imagemin',
        'useminPrepare',
@@ -215,6 +217,7 @@ module.exports = function(grunt) {
        'uglify',
        'filerev',
        'usemin',
-       'htmlmin' 
+       'htmlmin',
+       'clean:rootFiles'
     ]);
 }

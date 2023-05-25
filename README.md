@@ -1,6 +1,6 @@
 # bootstrap4-finalproject
 
-This course is the last assignment from `Front-end Web UI Framweroks and tools: Bootstrap 4` from **Coursera**
+This course is the last assignment from `Front-end Web UI Framweroks and tools: Bootstrap 4` from **Coursera** MOOC platform.
 
 ## 1. Introduction
 
@@ -50,11 +50,11 @@ The main purpose of the web is to offer a very useful library for store pogrammi
 |->package.json
 |->README.md
 ```
+
 	- `node_modules` contains the installed npm packages, including gulp, grunt, npm for webpacking utilities and bootstrap library
 	- `dist` is the packed, minified, and standalone for public site depoloyment
 	- `src` is the working site, as the best practices explains nowadays how to do this in this specific folder. Notice that in this case, the css and js files for bootstrap, popper and jquery are linked to `node_modules` site, but when using the webpacking tasks, this is locally copied to use in a single `js` and `css` files that are minified too. The reason for this package doesn't contains `js` folder but `dist` yes is because the `Grunt` tasks that makes this magic by copying the js files from `node_modules` and then uglify, minified and package them
 	- Local files are the main npm configuration packages and the configuration tasks, mainly repeated tasks, but for differente applications: npm, gulp and Grunt, but the only that works 100% is Grunt after a lot of effort due version incompatibilities with installed packages
-
 
 
 ## 3. Conclusions
